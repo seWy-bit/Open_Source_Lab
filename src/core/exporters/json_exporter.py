@@ -32,5 +32,5 @@ class JSONExporter:
                 'message': f'Ошибка при экспорте: {str(e)}'
             }
     
-    def to_json_string(self):
+    def to_string(self):
         return json.dumps(self.system_info.to_dict(), indent=2, ensure_ascii=False)
