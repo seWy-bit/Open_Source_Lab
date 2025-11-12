@@ -24,3 +24,73 @@
 - 📊 **Структурированные данные** — удобный формат для обработки
 - 🔧 **Модульная архитектура** — легко расширяемый код
 
+## 🏗️ Архитектура проекта
+sysinfo-collector/
+├── src/
+│ ├── core/ # 🎯 Ядро приложения
+│ │ ├── scanners/ # 🔍 Сканеры данных
+│ │ │ ├── hardware_scanner.py
+│ │ │ ├── software_scanner.py
+│ │ │ └── network_scanner.py
+│ │ ├── exporters/ # 💾 Экспортеры
+│ │ │ ├── json_exporter.py
+│ │ │ └── xml_exporter.py
+│ │ └── system_manager.py # 🎮 Управляющий класс
+│ ├── models/ # 📊 Модели данных
+│ │ └── system_info.py
+│ └── utils/ # 🛠️ Вспомогательные утилиты
+│ └── helpers.py
+├── main.py # 🚀 Точка входа
+├── requirements.txt # 📦 Зависимости
+└── README.md
+
+## 🔧 Использование в коде
+ 
+### Базовое использование
+```python
+from src.core.system_manager import SystemManager
+from src.core.exporters import JSONExporter, XMLExporter
+
+# Создаем менеджер и запускаем сканирование
+manager = SystemManager()
+system_info = manager.full_scan()
+
+# Экспортируем данные
+json_exporter = JSONExporter(system_info)
+json_exporter.export("my_system_info.json")
+
+xml_exporter = XMLExporter(system_info) 
+xml_exporter.export("my_system_info.xml")
+```
+### Выборочное сканирование
+```python
+# Только аппаратное обеспечение
+hardware_only = manager.scan_hardware()
+
+# Выборочное сканирование
+selective = manager.selective_scan(
+    scan_hardware=True,
+    scan_software=False, 
+    scan_network=True
+)
+```
+
+## 🛠️ Разработка
+
+### Установка для разработки
+```bash
+git clone https://github.com/seWy-bit/Open_Source_Lab
+cd sysinfo-collector
+pip install psutil
+```
+
+### Планы по развитию
+-**GUI интерфейс**
+
+-**Поддержка Linux и macOS**
+
+-**CSV экспорт**
+
+-**Сетевое сканирование**
+
+-**Плагины и расширения**

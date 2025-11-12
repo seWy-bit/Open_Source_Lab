@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-"""
-Главный файл для запуска SysInfo Collector
-"""
-
 from src.core.system_manager import SystemManager
 from src.core.exporters import JSONExporter, XMLExporter
 
